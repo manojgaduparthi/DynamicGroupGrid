@@ -1,0 +1,166 @@
+/* Minimal styles for grouped grid */
+.dynamic-group-grid-root { font-family: Segoe UI, Arial, sans-serif; font-size: 13px; }
+.dynamic-group-grid-toolbar { margin-bottom: 8px; }
+.dynamic-group-grid-select { padding: 4px; margin-left: 8px; border: 1px solid #ddd; border-radius: 2px; }
+.pcf-group-section { border: 1px solid #e1e1e1; margin-bottom: 10px; overflow: visible; }
+.pcf-group-header { background:#f3f3f3; padding:6px 8px; font-weight:600; display:flex; align-items:center; width:100%; box-sizing:border-box; z-index:2; position:relative; }
+.pcf-group-header .chev { width:16px; height:16px; display:inline-block; margin-right:8px; transition: transform .15s ease-in-out; }
+.pcf-group-header .chev.collapsed { transform: rotate(-90deg); }
+.pcf-grid-header { display:flex; background:#fafafa; border-bottom:1px solid #e6e6e6; position:relative; z-index:1; }
+.pcf-grid-header .pcf-grid-col, .pcf-group-row .pcf-grid-col { padding:4px 6px; flex:0 0 auto; border-right:1px solid #eee; min-width:120px; box-sizing:border-box; }
+.pcf-grid-col { display:flex; align-items:center; min-width:40px; box-sizing:border-box; }
+.pcf-group-row .pcf-cell { padding:4px 6px; display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%; }
+.pcf-grid-col input[type=checkbox] { margin:0; }
+.pcf-grid-col button { padding:2px 6px; font-size:12px; }
+.pcf-grid-col:first-child, .pcf-group-row > .pcf-grid-col:first-child { flex:0 0 36px; }
+.pcf-grid-col:last-child, .pcf-group-row > .pcf-grid-col:last-child { flex:0 0 120px; }
+.pcf-grid-header .pcf-grid-col:last-child, .pcf-group-row .pcf-cell:last-child { border-right:none; }
+.pcf-group-row { display:flex; border-top:1px solid #fff; align-items:center; cursor:pointer; }
+.pcf-group-row:hover { background:#eef6ff; }
+.pcf-group-row.selected { background:#d6eaff; }
+.pcf-group-row:nth-child(odd) { background:#fff; }
+.pcf-group-row:nth-child(even) { background:#fbfbfb; }
+.pcf-cell { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%; }
+
+/* Specific rule to ensure long emails don't overflow neighboring cells */
+.pcf-grid-col .pcf-cell { display:block; max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+/* Ensure the header and group sections can size to their contents so horizontal scrolling shows all columns */
+.pcf-grid-scroll-wrap { overflow-x: auto; width: 100%; position: relative; background: #fafafa; }
+/* Keep header and rows as flex containers so columns render horizontally */
+.pcf-grid-scroll-wrap > .pcf-grid-header { display: flex; min-width: -moz-max-content; min-width: max-content; position: sticky; top: 0; z-index: 5; background: #fafafa; }
+.pcf-group-header { z-index: 2; position: relative; }
+.pcf-grid-scroll-wrap .pcf-group-section { min-width: -moz-max-content; min-width: max-content; }
+.pcf-grid-scroll-wrap .dynamic-group-grid-list { display: block; }
+.pcf-group-row { flex-wrap: nowrap; }
+
+/* Collapsed groups are hidden (no placeholder), so no placeholder styles required */
+.pcf-group-section.collapsed { padding-bottom: 0; }
+.pcf-group-section.collapsed .dynamic-group-grid-list { display: none !important; height: 0 !important; margin: 0 !important; padding: 0 !important; }
+.pcf-group-section.collapsed { border-bottom-width: 1px; }
+
+/* Ensure collapsed header area fills the horizontal scroll area (avoid white gap on the right) */
+.pcf-group-section.collapsed > .pcf-group-header {
+	display: flex;
+	align-items: center;
+	height: 28px; /* keep compact */
+	padding: 4px 8px; /* smaller padding while collapsed */
+	width: 100%;
+	box-sizing: border-box;
+	background: #f3f3f3; /* same as header */
+	position: relative;
+	overflow: hidden;
+}
+
+/* Add pseudo-element to extend background beyond container to eliminate white gap */
+.pcf-group-section.collapsed > .pcf-group-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: -100vw;
+    bottom: 0;
+    background-color: #f3f3f3;
+    z-index: -1;
+}
+
+/* Ensure header background visually extends to the scroll content width without forcing children to expand vertically */
+.pcf-grid-scroll-wrap .pcf-group-section.collapsed { min-width: 100%; }
+
+/* Keep scroll wrapper background consistent */
+.pcf-grid-scroll-wrap { background: #fafafa; }
+
+/* Target email-like columns by data attribute set in the DOM */
+.pcf-grid-col[data-col-name*="email"] { max-width: 220px; min-width: 80px; }
+.pcf-grid-col[data-col-name*="email"] .pcf-cell { display:block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* For header cells (same attribute on header columns) */
+.pcf-grid-header .pcf-grid-col[data-col-name*="email"] { max-width: 220px; min-width: 80px; overflow:hidden; }
+
+/* If a column header label is long, ensure it doesn't overlap adjacent headers */
+.pcf-grid-header .pcf-grid-col { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Ensure scroll wrapper forces columns to take their content width so backgrounds line up */
+.pcf-grid-scroll-wrap > .pcf-grid-header, .pcf-grid-scroll-wrap .pcf-group-section { min-width: max-content; }
+
+/* When collapsed, avoid large empty row areas by keeping group list removed and header compact */
+.pcf-group-section.collapsed .dynamic-group-grid-list { display: none !important; height: 0 !important; padding: 0 !important; margin: 0 !important; }
+
+/* Bulk action toolbar */
+.pcf-bulk-toolbar { display:flex; gap:8px; align-items:center; padding:6px 0; margin-bottom:6px; }
+.pcf-bulk-toolbar .pcf-bulk-info { font-weight:600; margin-right:8px; }
+.pcf-bulk-toolbar button { padding:4px 8px; font-size:12px; }
+
+/* Sortable headers */
+.pcf-sortable { cursor:pointer; user-select:none; }
+.pcf-sort-ind { font-size:11px; margin-left:6px; }
+
+/* Column resize handle */
+.pcf-col-handle { width:8px; cursor:col-resize; display:inline-block; height:100%; align-self:stretch; }
+.pcf-col-handle:hover { background: rgba(0,0,0,0.03); }
+.pcf-grid-col { position:relative; }
+
+/* Pagination styles */
+.pcf-pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 8px;
+    border-top: 1px solid #e1e1e1;
+    background: #fafafa;
+    margin-top: 8px;
+}
+
+.pcf-pagination-info {
+    font-size: 13px;
+    color: #666;
+    font-weight: 500;
+}
+
+.pcf-pagination-controls {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.pcf-pagination-button {
+    padding: 6px 12px;
+    border: 1px solid #d1d1d1;
+    background: #fff;
+    color: #333;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    min-width: 36px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pcf-pagination-button:hover:not(:disabled) {
+    background: #e6f3ff;
+    border-color: #0078d4;
+    color: #0078d4;
+}
+
+.pcf-pagination-button:disabled {
+    background: #f5f5f5;
+    color: #a6a6a6;
+    border-color: #e1e1e1;
+    cursor: not-allowed;
+}
+
+.pcf-pagination-button.active {
+    background: #0078d4;
+    color: #fff;
+    border-color: #0078d4;
+    font-weight: 600;
+}
+
+.pcf-pagination-button.active:hover {
+    background: #106ebe;
+    border-color: #106ebe;
+}
+.pcf-col-handle.dragging { background: rgba(0,120,215,0.15); }

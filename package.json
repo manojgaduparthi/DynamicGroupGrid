@@ -1,0 +1,14 @@
+{
+  "name": "dynamic-group-grid",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "pcf-scripts build",
+    "clean": "pcf-scripts clean",
+    "rebuild": "pcf-scripts rebuild",
+    "start": "pcf-scripts start"
+  },
+  "devDependencies": {
+    "@types/powerapps-component-framework": "^1.3.16",
+    "pcf-scripts": "^1"
+  }
+}

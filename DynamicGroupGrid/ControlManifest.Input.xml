@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="DynamicGroupGrid.PCF" constructor="DynamicGroupGrid" version="1.0.0" display-name-key="Dynamic Group Grid" description-key="Advanced grouped data grid with pagination and dynamic grouping" control-type="standard" >
+    <!--external-service-usage node declares whether this 3rd party PCF control is using external service or not, if yes, this control will be considered as premium and please also add the external domain it is using.
+    If it is not using any external service, please set the enabled="false" and DO NOT add any domain below. The "enabled" will be false by default.
+    Example1:
+      <external-service-usage enabled="true">
+        <domain>www.Microsoft.com</domain>
+      </external-service-usage>
+    Example2:
+      <external-service-usage enabled="false">
+      </external-service-usage>
+    -->
+  <external-service-usage enabled="false">
+      <!--UNCOMMENT TO ADD EXTERNAL DOMAINS
+      <domain></domain>
+      <domain></domain>
+      -->
+    </external-service-usage>
+    <!-- dataset node represents a set of entity records on CDS; allow more than one datasets -->
+    <data-set name="sampleDataSet" display-name-key="Dataset_Display_Key" cds-data-set-options="displayCommandBar:true;displayViewSelector:true;displayQuickFind:true">
+      <!-- 'property-set' node represents a unique, configurable property that each record in the dataset can provide. -->
+      <!-- Adding a non-required property-set helps host/ribbon rules that reference record properties. -->
+      <property-set name="samplePropertySet" display-name-key="Property_Display_Key" description-key="Property_Desc_Key" of-type="SingleLine.Text" usage="bound" required="false" />
+    </data-set>
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="css/DynamicGroupGrid.css" order="2" />
+    </resources>
+    <property name="selectedRecordId" display-name-key="SelectedRecord" of-type="SingleLine.Text" usage="output" />
+  <property name="selectedRecordIds" display-name-key="SelectedRecords" of-type="SingleLine.Text" usage="output" />
+  <property name="rowEvent" display-name-key="RowEvent" of-type="SingleLine.Text" usage="output" />
+  <property name="pageSize" display-name-key="PageSize" description-key="Number of records per page" of-type="Whole.None" usage="input" default-value="25" />
+  <property name="enablePagination" display-name-key="EnablePagination" description-key="Enable pagination for large datasets" of-type="TwoOptions" usage="input" default-value="true" />
+    <!-- Enable required features for subgrid functionality -->
+    <feature-usage>
+      <uses-feature name="WebAPI" required="true" />
+      <uses-feature name="Utility" required="true" />
+    </feature-usage>
+  </control>
+</manifest>
