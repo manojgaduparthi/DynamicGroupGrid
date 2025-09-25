@@ -41,9 +41,9 @@
 /* Ensure the header and group sections can size to their contents so horizontal scrolling shows all columns */
 .pcf-grid-scroll-wrap { overflow-x: auto; width: 100%; position: relative; background: #fafafa; }
 /* Keep header and rows as flex containers so columns render horizontally */
-.pcf-grid-scroll-wrap > .pcf-grid-header { display: flex; min-width: -moz-max-content; min-width: max-content; position: sticky; top: 0; z-index: 5; background: #fafafa; }
+.pcf-grid-scroll-wrap > .pcf-grid-header { display: flex; min-width: -webkit-max-content; min-width: -moz-max-content; min-width: max-content; position: sticky; top: 0; z-index: 5; background: #fafafa; }
 .pcf-group-header { z-index: 2; position: relative; }
-.pcf-grid-scroll-wrap .pcf-group-section { min-width: -moz-max-content; min-width: max-content; }
+.pcf-grid-scroll-wrap .pcf-group-section { min-width: -webkit-max-content; min-width: -moz-max-content; min-width: max-content; }
 .pcf-grid-scroll-wrap .dynamic-group-grid-list { display: block; }
 .pcf-group-row { flex-wrap: nowrap; }
 
@@ -96,8 +96,7 @@
 /* Ensure scroll wrapper forces columns to take their content width so backgrounds line up */
 .pcf-grid-scroll-wrap > .pcf-grid-header, .pcf-grid-scroll-wrap .pcf-group-section { min-width: max-content; }
 
-/* When collapsed, avoid large empty row areas by keeping group list removed and header compact */
-.pcf-group-section.collapsed .dynamic-group-grid-list { display: none !important; height: 0 !important; padding: 0 !important; margin: 0 !important; }
+/* Duplicate rule removed - handled above at line 52 */
 
 /* Bulk action toolbar */
 .pcf-bulk-toolbar { display:flex; gap:8px; align-items:center; padding:6px 0; margin-bottom:6px; }
