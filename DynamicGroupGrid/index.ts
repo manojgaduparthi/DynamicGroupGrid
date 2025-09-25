@@ -369,7 +369,7 @@ export class DynamicGroupGrid implements ComponentFramework.StandardControl<IInp
             const expanded = this._expandedGroups.get(groupKey) !== false;
             // hide the list entirely when collapsed to avoid rendering an empty placeholder row
             if (!expanded) {
-                (list as HTMLElement).style.display = 'none';
+                // CSS handles display: none with !important rule - no inline style needed
                 // mark parent as collapsed for CSS targeting
                 groupDiv.classList.add('collapsed');
             }
