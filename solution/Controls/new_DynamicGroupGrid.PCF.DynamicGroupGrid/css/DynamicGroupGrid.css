@@ -4,7 +4,20 @@
 .dynamic-group-grid-select { padding: 4px; margin-left: 8px; border: 1px solid #ddd; border-radius: 2px; }
 .pcf-group-section { border: 1px solid #e1e1e1; margin-bottom: 10px; overflow: visible; }
 .pcf-group-header { background:#f3f3f3; padding:6px 8px; font-weight:600; display:flex; align-items:center; width:100%; box-sizing:border-box; z-index:2; position:relative; }
-.pcf-group-header .chev { width:16px; height:16px; display:inline-block; margin-right:8px; transition: transform .15s ease-in-out; }
+.pcf-group-header .chev { 
+    width: 0 !important; 
+    height: 0 !important; 
+    display: inline-block; 
+    margin-right: 8px; 
+    transition: transform .15s ease-in-out;
+    border-left: 6px solid transparent !important;
+    border-right: 6px solid transparent !important;
+    border-top: 8px solid #333 !important;
+    border-bottom: none !important;
+    background: transparent !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+}
 .pcf-group-header .chev.collapsed { transform: rotate(-90deg); }
 .pcf-grid-header { display:flex; background:#fafafa; border-bottom:1px solid #e6e6e6; position:relative; z-index:1; }
 .pcf-grid-header .pcf-grid-col, .pcf-group-row .pcf-grid-col { padding:4px 6px; flex:0 0 auto; border-right:1px solid #eee; min-width:120px; box-sizing:border-box; }
