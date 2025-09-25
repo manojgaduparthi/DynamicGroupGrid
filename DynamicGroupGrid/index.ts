@@ -347,13 +347,7 @@ export class DynamicGroupGrid implements ComponentFramework.StandardControl<IInp
             header.className = "pcf-group-header";
             const chev = document.createElement("span");
             chev.className = "chev";
-            // simple triangle using CSS border
-            chev.style.display = "inline-block";
-            chev.style.width = "0";
-            chev.style.height = "0";
-            chev.style.borderLeft = "6px solid transparent";
-            chev.style.borderRight = "6px solid transparent";
-            chev.style.borderTop = "8px solid #333";
+            // Triangle arrow is now fully handled by CSS for consistent cross-environment rendering
             // default groups to collapsed; user can click to expand
             if (!this._expandedGroups.has(groupKey)) this._expandedGroups.set(groupKey, false);
             if (!this._expandedGroups.get(groupKey)) chev.classList.add("collapsed");
