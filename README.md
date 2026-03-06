@@ -345,7 +345,7 @@ DynamicGroupGrid/
 **Fastest method - Download and import pre-built solutions:**
 
 1. **Download Latest Release**:
-   - Visit [GitHub Releases](https://github.com/manojgaduparthi/DynamicGroupGrid/releases)
+   - Visit [GitHub Releases](https://github.com/manojgaduparthi/DynamicGroupGrid/tree/main/releases)
    - Download `DynamicGroupGrid_managed.zip` (production) or `DynamicGroupGrid_unmanaged.zip` (development)
 
 2. **Import Solution**:
@@ -548,7 +548,7 @@ For issues and questions:
 
 | Version | Date | Notes |
 |---------|------|-------|
-| 1.0.12 | March 2026 | Publisher prefix updated to `mg`, solution packaging fixes, README updated |
+| 1.0.12 | March 2026 | Initial Checkin |
 
 ## Acknowledgments
 
@@ -563,3 +563,4 @@ For issues and questions:
 **Compatible**: Power Platform 2024+  
 
 **License**: MIT
+
