@@ -21,7 +21,7 @@ Advanced Power Apps Component Framework (PCF) control with dynamic grouping, pag
 
 **For immediate deployment, download and import ready-to-use solution packages:**
 
-1. **Download** the latest solution from [Releases](https://github.com/manojgaduparthi/DynamicGroupGrid/releases):
+1. **Download** the latest solution from [Releases](https://github.com/manojgaduparthi/DynamicGroupGrid/tree/main/releases):
    - `DynamicGroupGrid_unmanaged.zip` - For development/testing environments
    - `DynamicGroupGrid_managed.zip` - For production environments
 
@@ -561,4 +561,5 @@ For issues and questions:
 **Version**: 1.0.12  
 **Last Updated**: March 2026  
 **Compatible**: Power Platform 2024+  
+
 **License**: MIT
