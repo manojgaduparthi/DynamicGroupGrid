@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(UserProfile)\.nuget\packages\microsoft.powerapps.msbuild.pcf\1.52.1\build\Microsoft.PowerApps.MSBuild.Pcf.props" Condition="Exists('$(UserProfile)\.nuget\packages\microsoft.powerapps.msbuild.pcf\1.52.1\build\Microsoft.PowerApps.MSBuild.Pcf.props')" />
+  <PropertyGroup>
+    <Name>DynamicGroupGrid</Name>
+    <ProjectGuid>{8f3b2e1a-4c7d-4a9e-b3f2-1e7d5c8a9b0c}</ProjectGuid>
+    <OutputPath>$(MSBuildThisFileDirectory)..\solution\Controls</OutputPath>
+  </PropertyGroup>
+  <Import Project="$(UserProfile)\.nuget\packages\microsoft.powerapps.msbuild.pcf\1.52.1\build\Microsoft.PowerApps.MSBuild.Pcf.targets" Condition="Exists('$(UserProfile)\.nuget\packages\microsoft.powerapps.msbuild.pcf\1.52.1\build\Microsoft.PowerApps.MSBuild.Pcf.targets')" />
+</Project>

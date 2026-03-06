@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es2017",
+    "lib": ["es2017", "dom"],
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./out/",
+    "strict": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "types": ["powerapps-component-framework"]
+  },
+  "include": [
+    "DynamicGroupGrid/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "out",
+    "WORKING_BACKUP_v3.1.4/**/*"
+  ]
+}

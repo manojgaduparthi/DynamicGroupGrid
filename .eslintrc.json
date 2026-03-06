@@ -1,0 +1,7 @@
+{
+  "extends": ["@microsoft/eslint-config-spfx/lib/profiles/default"],
+  "parserOptions": { "ecmaVersion": 2018 },
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off"
+  }
+}

@@ -1,0 +1,46 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Build output directories
+/bin
+/obj
+/out
+
+# MSBuild Binary and Structured Log
+*.binlog
+
+# Node modules
+node_modules/
+
+# PCF generated files
+/DynamicGroupGrid/generated/
+
+# Solution build output - Controls/ must be committed for pac solution pack to work
+# /solution/Controls/
+
+# Release packages
+/releases/*.zip
+
+# Visual Studio / VS Code
+.vs/
+.vscode/settings.json
+.vscode/launch.json
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment files
+.env
+.env.local
+
+# Temporary files
+*.tmp
+*.temp

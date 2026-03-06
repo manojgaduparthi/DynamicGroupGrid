@@ -1,0 +1,8 @@
+{
+  "pcfconfig": {
+    "type": "control",
+    "name": "DynamicGroupGrid",
+    "namespace": "DynamicGroupGrid.PCF",
+    "version": "1.0.12.0"
+  }
+}

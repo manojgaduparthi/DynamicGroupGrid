@@ -1,0 +1,276 @@
+/* Minimal styles for grouped grid component */
+.dynamic-group-grid-root { 
+    font-family: Segoe UI, Arial, sans-serif; 
+    font-size: 13px; 
+    isolation: isolate;
+    height: 100%;
+    overflow: auto;
+    position: relative;
+}
+.dynamic-group-grid-toolbar { margin-bottom: 8px; }
+.dynamic-group-grid-select { padding: 4px; margin-left: 8px; border: 1px solid #ddd; border-radius: 2px; }
+.dynamic-group-grid-root .pcf-group-section { 
+    border: 1px solid #e1e1e1; 
+    margin-bottom: 10px; 
+    overflow: visible; 
+    width: 100% !important; 
+    min-width: 0;
+    height: auto !important;
+}
+.dynamic-group-grid-root .pcf-group-header { background:#f3f3f3; padding:6px 8px; font-weight:600; display:flex; align-items:center; width:100%; box-sizing:border-box; z-index:2; position:relative; }
+.dynamic-group-grid-root .pcf-group-header .expand-toggle-btn { 
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    margin-right: 8px;
+    text-align: center;
+    line-height: 18px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #999;
+    border-radius: 3px;
+    background: #ffffff;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    vertical-align: middle;
+    user-select: none;
+}
+
+/* TARGETED OVERRIDE: Block external pseudo-element injection at CSS level - no JS scan needed */
+
+/* Block injection into all structural grid elements */
+.dynamic-group-grid-root .pcf-grid-col::before,
+.dynamic-group-grid-root .pcf-group-row::before,
+.dynamic-group-grid-root .pcf-group-row::after,
+.dynamic-group-grid-root .pcf-cell::before,
+.dynamic-group-grid-root .pcf-cell::after,
+.dynamic-group-grid-root .pcf-group-header::before,
+.dynamic-group-grid-root .pcf-grid-header::before {
+    content: none !important;
+    display: none !important;
+}
+
+/* Protect expand toggle buttons */
+.dynamic-group-grid-root .expand-toggle-btn {
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+.dynamic-group-grid-root .expand-toggle-btn::before,
+.dynamic-group-grid-root .expand-toggle-btn::after {
+    content: none !important;
+}
+
+/* Allow pagination button content (< > << >>) - exempt from blocking */
+.dynamic-group-grid-root .pcf-pagination-controls *::before,
+.dynamic-group-grid-root .pcf-pagination-controls *::after {
+    content: revert !important;
+}
+
+.dynamic-group-grid-root .pcf-group-header .expand-toggle-btn:hover {
+    background: #f0f0f0;
+    border-color: #666;
+}
+
+/* Fix for collapsed group sections and button visibility - SCOPED */
+.dynamic-group-grid-root .pcf-group-section .pcf-group-header {
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 28px !important;
+}
+
+/* Ensure proper alignment - SCOPED */
+.dynamic-group-grid-root .pcf-grid-header { display:flex; background:#fafafa; position:relative; z-index:1; width:100%; }
+/* Flexible column approach - let content determine width within flex constraints */
+.dynamic-group-grid-root .pcf-grid-header .pcf-grid-col, 
+.dynamic-group-grid-root .pcf-group-row .pcf-grid-col { 
+    padding: 4px 6px; 
+    /* Remove border and box-sizing to eliminate boxing effect */
+    /* Remove overflow hidden to prevent truncation */
+}
+.dynamic-group-grid-root .pcf-grid-col { display:flex; align-items:center; min-width:40px; position:relative; }
+.dynamic-group-grid-root .pcf-group-row .pcf-cell { 
+    padding:4px 6px; 
+    display:block; 
+    /* Allow content to show - remove truncation */
+    word-wrap: break-word;
+    width: 100%; 
+}
+.dynamic-group-grid-root .pcf-grid-col input[type=checkbox] { margin:0; }
+.dynamic-group-grid-root .pcf-grid-col button { padding:2px 6px; font-size:12px; }
+/* Fixed width for checkbox column */
+.dynamic-group-grid-root .pcf-grid-col:first-child, .dynamic-group-grid-root .pcf-group-row > .pcf-grid-col:first-child { 
+    width: 36px; 
+    min-width: 36px; 
+    max-width: 36px; 
+    flex: 0 0 36px;
+}
+
+/* Scrollable container for large datasets like DetailListGrid reference */
+.dynamic-group-grid-root .pcf-grid-header .pcf-grid-col:last-child, .dynamic-group-grid-root .pcf-group-row .pcf-cell:last-child { border-right:none; }
+.dynamic-group-grid-root .pcf-group-row { display:flex; border-top:1px solid #fff; align-items:center; cursor:pointer; width:100%; flex-wrap: nowrap; }
+.dynamic-group-grid-root .pcf-group-row:hover { background:#eef6ff; }
+.dynamic-group-grid-root .pcf-group-row.selected { background:#d6eaff; }
+.dynamic-group-grid-root .pcf-group-row:nth-child(odd) { background:#fff; }
+.dynamic-group-grid-root .pcf-group-row:nth-child(even) { background:#fbfbfb; }
+.dynamic-group-grid-root .pcf-cell { white-space:nowrap; }
+
+/* Allow cells to expand naturally without truncation */
+.dynamic-group-grid-root .pcf-grid-col .pcf-cell { display:block; white-space:nowrap; }
+
+/* Ensure the header and group sections can size to their contents so horizontal scrolling shows all columns - SCOPED */
+.dynamic-group-grid-root .pcf-grid-scroll-wrap { overflow-x: auto; width: 100%; position: relative; background: #fafafa; }
+/* Keep header and rows as flex containers so columns render horizontally - SCOPED */
+.dynamic-group-grid-root .pcf-grid-scroll-wrap > .pcf-grid-header { display: flex; min-width: -webkit-max-content; min-width: -moz-max-content; min-width: max-content; position: sticky; top: 0; z-index: 5; background: #fafafa; }
+.dynamic-group-grid-root .pcf-grid-scroll-wrap .pcf-group-section { width: 100%; height: auto; min-width: 0; }
+.dynamic-group-grid-root .pcf-grid-scroll-wrap .dynamic-group-grid-list { display: block; }
+
+/* Collapsed groups are hidden (no placeholder), so no placeholder styles required - SCOPED */
+.dynamic-group-grid-root .pcf-group-section.pcf-group-collapsed { padding-bottom: 0; border-bottom-width: 1px; }
+.dynamic-group-grid-root .pcf-group-section.pcf-group-collapsed .dynamic-group-grid-list { display: none !important; height: 0 !important; margin: 0 !important; padding: 0 !important; }
+
+/* Ensure collapsed header area fills the horizontal scroll area (avoid white gap on the right) - SCOPED */
+.dynamic-group-grid-root .pcf-group-section.pcf-group-collapsed > .pcf-group-header {
+	display: flex;
+	align-items: center;
+	height: 28px; /* keep compact */
+	padding: 4px 8px; /* smaller padding while collapsed */
+	width: 100%;
+	box-sizing: border-box;
+	background: #f3f3f3; /* same as header */
+	position: relative;
+	overflow: hidden;
+}
+
+/* Add pseudo-element to extend background beyond container to eliminate white gap - SCOPED */
+.dynamic-group-grid-root .pcf-group-section.pcf-group-collapsed > .pcf-group-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: -100vw;
+    bottom: 0;
+    background-color: #f3f3f3;
+    z-index: -1;
+}
+
+/* Ensure header background visually extends to the scroll content width without forcing children to expand vertically - SCOPED */
+.dynamic-group-grid-root .pcf-grid-scroll-wrap .pcf-group-section.pcf-group-collapsed { min-width: 0; width: 100%; }
+
+/* Target email-like columns by data attribute set in the DOM - SCOPED */
+.dynamic-group-grid-root .pcf-grid-col[data-col-name*="email"] { max-width: 220px; min-width: 80px; }
+.dynamic-group-grid-root .pcf-grid-col[data-col-name*="email"] .pcf-cell { display:block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* For header cells (same attribute on header columns) - SCOPED */
+.dynamic-group-grid-root .pcf-grid-header .pcf-grid-col[data-col-name*="email"] { max-width: 220px; min-width: 80px; overflow:hidden; }
+
+/* If a column header label is long, ensure it doesn't overlap adjacent headers - SCOPED */
+.dynamic-group-grid-root .pcf-grid-header .pcf-grid-col { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Duplicate rule removed - handled above at line 52 */
+
+/* Bulk action toolbar - SCOPED */
+.dynamic-group-grid-root .pcf-bulk-toolbar { display:flex; gap:8px; align-items:center; padding:6px 0; margin-bottom:6px; }
+.dynamic-group-grid-root .pcf-bulk-toolbar .pcf-bulk-info { font-weight:600; margin-right:8px; }
+.dynamic-group-grid-root .pcf-bulk-toolbar button { padding:4px 8px; font-size:12px; }
+
+/* Sortable headers - SCOPED */
+.dynamic-group-grid-root .pcf-sortable { cursor:pointer; user-select:none; }
+.dynamic-group-grid-root .pcf-sort-ind { font-size:11px; margin-left:6px; }
+
+/* Column resize handle - SCOPED */
+.dynamic-group-grid-root .pcf-col-handle { width:8px; cursor:col-resize; display:inline-block; height:100%; align-self:stretch; }
+.dynamic-group-grid-root .pcf-col-handle:hover { background: rgba(0,0,0,0.03); }
+
+/* Pagination styles - SCOPED */
+.dynamic-group-grid-root .pcf-pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 8px;
+    border-top: 1px solid #e1e1e1;
+    background: #fafafa;
+    margin-top: 8px;
+}
+
+.dynamic-group-grid-root .pcf-pagination-info {
+    font-size: 13px;
+    color: #666;
+    font-weight: 500;
+}
+
+.dynamic-group-grid-root .pcf-pagination-controls {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.dynamic-group-grid-root .pcf-pagination-button {
+    padding: 6px 12px;
+    border: 1px solid #d1d1d1;
+    background: #fff;
+    color: #333;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    min-width: 36px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dynamic-group-grid-root .pcf-pagination-button:hover:not(:disabled) {
+    background: #e6f3ff;
+    border-color: #005a9e;
+    color: #005a9e;
+}
+
+.dynamic-group-grid-root .pcf-pagination-button:disabled {
+    background: #f5f5f5;
+    color: #6e6e6e;
+    border-color: #e1e1e1;
+    cursor: not-allowed;
+}
+
+.dynamic-group-grid-root .pcf-pagination-button.active {
+    background: #0078d4;
+    color: #fff;
+    border-color: #0078d4;
+    font-weight: 600;
+}
+
+.dynamic-group-grid-root .pcf-pagination-button.active:hover {
+    background: #106ebe;
+    border-color: #106ebe;
+}
+.dynamic-group-grid-root .pcf-col-handle.dragging { background: rgba(0,120,215,0.15); }
+
+/* Lookup field styling - matches D365 native lookup appearance */
+.dynamic-group-grid-root .pcf-lookup-link {
+    color: #0078d4;
+    text-decoration: none;
+    cursor: pointer;
+    border-bottom: 1px dotted #0078d4;
+    font-weight: normal;
+    display: inline-block;
+}
+
+.dynamic-group-grid-root .pcf-lookup-link:hover {
+    color: #106ebe;
+    border-bottom-color: #106ebe;
+    text-decoration: none;
+}
+
+.dynamic-group-grid-root .pcf-lookup-link:focus {
+    outline: 2px solid #0078d4;
+    outline-offset: 2px;
+    background-color: rgba(0, 120, 212, 0.1);
+}
